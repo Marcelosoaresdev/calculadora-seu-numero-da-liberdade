@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora da Liberdade Financeira</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-content">
+          <h1>
+            <i data-lucide="target" class="header-icon" size="48"></i>
+            SEU NÚMERO DA LIBERDADE
+          </h1>
+          <p>Calculando Exatamente Quanto Você Precisa Para Ser Livre</p>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="input-form">
+          <h2 class="form-title">
+            <i data-lucide="calculator" size="28"></i>
+            Insira Seus Dados Financeiros
+          </h2>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="monthly-income">
+                <i data-lucide="banknote" class="label-icon" size="20"></i>
+                Renda Mensal Líquida
+              </label>
+              <div class="input-wrapper">
+                <span class="currency-symbol">R$</span>
+                <input
+                  type="number"
+                  id="monthly-income"
+                  placeholder="5000"
+                  min="1"
+                  step="1"
+                />
+              </div>
+              <div class="error-message" id="income-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="monthly-expenses">
+                <i data-lucide="credit-card" class="label-icon" size="20"></i>
+                Gastos Mensais Totais
+              </label>
+              <div class="input-wrapper">
+                <span class="currency-symbol">R$</span>
+                <input
+                  type="number"
+                  id="monthly-expenses"
+                  placeholder="4000"
+                  min="1"
+                  step="1"
+                />
+              </div>
+              <div class="error-message" id="expenses-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="current-savings">
+                <i data-lucide="piggy-bank" class="label-icon" size="20"></i>
+                Patrimônio Atual Investido
+              </label>
+              <div class="input-wrapper">
+                <span class="currency-symbol">R$</span>
+                <input
+                  type="number"
+                  id="current-savings"
+                  placeholder="0"
+                  min="0"
+                  step="1"
+                />
+              </div>
+              <div class="error-message" id="savings-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="monthly-investment">
+                <i data-lucide="trending-up" class="label-icon" size="20"></i>
+                Investimento Mensal
+              </label>
+              <div class="input-wrapper">
+                <span class="currency-symbol">R$</span>
+                <input
+                  type="number"
+                  id="monthly-investment"
+                  placeholder="1000"
+                  min="0"
+                  step="1"
+                />
+              </div>
+              <div class="error-message" id="investment-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="annual-return">
+                <i data-lucide="bar-chart-3" class="label-icon" size="20"></i>
+                Retorno Anual Esperado
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="annual-return"
+                  placeholder="10"
+                  min="0"
+                  max="100"
+                  step="1"
+                />
+                <span class="percent-symbol">%</span>
+              </div>
+              <div class="error-message" id="return-error"></div>
+            </div>
+          </div>
+
+          <div class="warning-message" id="warning-message">
+            <i data-lucide="alert-triangle" size="20"></i>
+            <span></span>
+          </div>
+
+          <div class="success-message" id="success-message">
+            <i data-lucide="check-circle" size="20"></i>
+            <span>Calculando sua liberdade financeira...</span>
+          </div>
+
+          <button class="calculate-btn" onclick="calculateFreedom()">
+            <i data-lucide="rocket" class="btn-icon" size="24"></i>
+            CALCULAR MINHA LIBERDADE FINANCEIRA
+          </button>
+        </div>
+
+        <div class="results-container" id="results-container">
+          <h2 class="results-title">
+            <i data-lucide="target" size="32"></i>
+            Seus Níveis de Liberdade Financeira
+          </h2>
+
+          <div class="levels-grid">
+            <div class="level-card level-1">
+              <div class="level-header">
+                <i data-lucide="shield" class="level-icon" size="40"></i>
+                <div class="level-info">
+                  <h3>NÍVEL 1 - SEGURANÇA</h3>
+                  <p>Reserva de emergência (6-12 meses)</p>
+                </div>
+              </div>
+              <div class="level-details">
+                <div>
+                  <div class="level-value" id="level1-value">R$ 0</div>
+                  <div class="progress-container">
+                    <div class="progress-label">
+                      <span>Progresso</span>
+                      <span id="level1-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div
+                        class="progress-fill"
+                        id="level1-progress"
+                        style="width: 0%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="level-time" id="level1-time">
+                  <i data-lucide="calendar" size="16"></i>
+                  <span>0 meses</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="level-card level-2">
+              <div class="level-header">
+                <i data-lucide="trophy" class="level-icon" size="40"></i>
+                <div class="level-info">
+                  <h3>NÍVEL 2 - INDEPENDÊNCIA</h3>
+                  <p>25x gastos anuais (Regra dos 4%)</p>
+                </div>
+              </div>
+              <div class="level-details">
+                <div>
+                  <div class="level-value" id="level2-value">R$ 0</div>
+                  <div class="progress-container">
+                    <div class="progress-label">
+                      <span>Progresso</span>
+                      <span id="level2-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div
+                        class="progress-fill"
+                        id="level2-progress"
+                        style="width: 0%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="level-time" id="level2-time">
+                  <i data-lucide="calendar" size="16"></i>
+                  <span>0 anos</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="level-card level-3">
+              <div class="level-header">
+                <i data-lucide="crown" class="level-icon" size="40"></i>
+                <div class="level-info">
+                  <h3>NÍVEL 3 - LIBERDADE TOTAL</h3>
+                  <p>40x gastos anuais (Vida dos sonhos)</p>
+                </div>
+              </div>
+              <div class="level-details">
+                <div>
+                  <div class="level-value" id="level3-value">R$ 0</div>
+                  <div class="progress-container">
+                    <div class="progress-label">
+                      <span>Progresso</span>
+                      <span id="level3-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div
+                        class="progress-fill"
+                        id="level3-progress"
+                        style="width: 0%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="level-time" id="level3-time">
+                  <i data-lucide="calendar" size="16"></i>
+                  <span>0 anos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <h3 class="summary-title">
+              <i data-lucide="pie-chart" size="28"></i>
+              Resumo da Sua Jornada Financeira
+            </h3>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <div class="summary-value" id="monthly-surplus">R$ 0</div>
+                <div class="summary-label">Sobra Mensal Disponível</div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-value" id="annual-expenses">R$ 0</div>
+                <div class="summary-label">Gastos Anuais Totais</div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-value" id="freedom-income">R$ 0</div>
+                <div class="summary-label">Renda Mensal da Liberdade</div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-value" id="total-timeline">0 anos</div>
+                <div class="summary-label">Tempo para Independência</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tips-section">
+          <h4 class="tips-title">
+            <i data-lucide="lightbulb" size="24"></i>
+            Dicas Importantes para Sua Jornada
+          </h4>
+          <div class="tips-grid">
+            <div class="tip-item">
+              <i data-lucide="dollar-sign" class="tip-icon" size="20"></i>
+              <div>
+                <strong>Valores Realistas:</strong> Use sempre valores líquidos
+                (após impostos e descontos)
+              </div>
+            </div>
+            <div class="tip-item">
+              <i data-lucide="trending-up" class="tip-icon" size="20"></i>
+              <div>
+                <strong>Retorno Conservador:</strong> Para cálculos seguros, use
+                retornos entre 8-12% ao ano
+              </div>
+            </div>
+            <div class="tip-item">
+              <i data-lucide="target" class="tip-icon" size="20"></i>
+              <div>
+                <strong>Metas Graduais:</strong> Foque primeiro na reserva de
+                emergência, depois na independência
+              </div>
+            </div>
+            <div class="tip-item">
+              <i data-lucide="refresh-cw" class="tip-icon" size="20"></i>
+              <div>
+                <strong>Revisão Periódica:</strong> Reavalie seus números a cada
+                6 meses
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+    <script src="script.js"></script>
+</html>

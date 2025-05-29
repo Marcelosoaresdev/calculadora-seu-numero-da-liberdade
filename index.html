@@ -6,24 +6,20 @@
     <title>Calculadora da Liberdade Financeira</title>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
       <div class="header">
         <div class="header-content">
-          <h1>
-            SEU NÚMERO DA LIBERDADE
-          </h1>
+          <h1>SEU NÚMERO DA LIBERDADE</h1>
           <p>Calculando Exatamente Quanto Você Precisa Para Ser Livre</p>
         </div>
       </div>
 
       <div class="main-content">
         <div class="input-form">
-          <h2 class="form-title">
-            Insira Seus Dados Financeiros
-          </h2>
+          <h2 class="form-title">Insira Seus Dados Financeiros</h2>
 
           <div class="form-grid">
             <div class="form-group">
@@ -158,10 +154,7 @@
                       <span id="level1-percentage">0%</span>
                     </div>
                     <div class="progress-bar">
-                      <div
-                        class="progress-fill"
-                        id="level1-progress"
-                      ></div>
+                      <div class="progress-fill" id="level1-progress"></div>
                     </div>
                   </div>
                 </div>
@@ -189,10 +182,7 @@
                       <span id="level2-percentage">0%</span>
                     </div>
                     <div class="progress-bar">
-                      <div
-                        class="progress-fill"
-                        id="level2-progress"
-                      ></div>
+                      <div class="progress-fill" id="level2-progress"></div>
                     </div>
                   </div>
                 </div>
@@ -220,10 +210,7 @@
                       <span id="level3-percentage">0%</span>
                     </div>
                     <div class="progress-bar">
-                      <div
-                        class="progress-fill"
-                        id="level3-progress"
-                      ></div>
+                      <div class="progress-fill" id="level3-progress"></div>
                     </div>
                   </div>
                 </div>
@@ -236,75 +223,123 @@
           </div>
 
           <!-- Nova seção: Como são feitos os cálculos -->
-          <div class="calculations-section">
-            <h3 class="calculations-title">
-              <i data-lucide="calculator" size="28"></i>
-              Como São Feitos os Cálculos
-            </h3>
-            <div class="calculations-grid">
-              <div class="calculation-card">
-                <div class="calc-header">
-                  <i data-lucide="shield" size="24"></i>
-                  <h4>Nível 1 - Segurança</h4>
-                </div>
-                <div class="calc-formula">
-                  <div class="formula-title">Fórmula:</div>
-                  <div class="formula-text">Gastos Mensais × 6</div>
-                </div>
-                <div class="calc-explanation">
-                  <p><strong>Objetivo:</strong> Criar uma reserva de emergência que cubra 6 meses dos seus gastos.</p>
-                  <p><strong>Por quê?</strong> Esta reserva te protege contra imprevistos como desemprego, problemas de saúde ou gastos emergenciais.</p>
-                  <p><strong>Onde investir:</strong> Conta poupança, CDB líquido ou Tesouro Selic para liquidez imediata.</p>
-                </div>
-              </div>
-
-              <div class="calculation-card">
-                <div class="calc-header">
-                  <i data-lucide="trophy" size="24"></i>
-                  <h4>Nível 2 - Independência</h4>
-                </div>
-                <div class="calc-formula">
-                  <div class="formula-title">Fórmula:</div>
-                  <div class="formula-text">Gastos Anuais × 25</div>
-                </div>
-                <div class="calc-explanation">
-                  <p><strong>Objetivo:</strong> Acumular 25 vezes seus gastos anuais seguindo a "Regra dos 4%".</p>
-                  <p><strong>Por quê?</strong> Com este valor, você pode sacar 4% ao ano (que equivale aos seus gastos) e manter o patrimônio crescendo.</p>
-                  <p><strong>Resultado:</strong> Independência financeira - você nunca mais precisa trabalhar por dinheiro.</p>
-                </div>
-              </div>
-
-              <div class="calculation-card">
-                <div class="calc-header">
-                  <i data-lucide="crown" size="24"></i>
-                  <h4>Nível 3 - Liberdade Total</h4>
-                </div>
-                <div class="calc-formula">
-                  <div class="formula-title">Fórmula:</div>
-                  <div class="formula-text">Gastos Anuais × 40</div>
-                </div>
-                <div class="calc-explanation">
-                  <p><strong>Objetivo:</strong> Acumular 40 vezes seus gastos anuais para máxima segurança e flexibilidade.</p>
-                  <p><strong>Por quê?</strong> Permite aumentar significativamente seu padrão de vida ou ter margem extra para imprevistos e sonhos.</p>
-                  <p><strong>Resultado:</strong> Liberdade total - você pode viver a vida dos seus sonhos sem preocupações financeiras.</p>
-                </div>
-              </div>
+          <div class="calculations-dropdown">
+            <div class="dropdown-header" onclick="toggleCalculations()">
+              <h3 class="dropdown-title">
+                <i data-lucide="calculator" size="28"></i>
+                Como São Feitos os Cálculos
+              </h3>
+              <i
+                data-lucide="chevron-down"
+                size="24"
+                class="dropdown-arrow"
+                id="calculations-arrow"
+              ></i>
             </div>
 
-            <div class="time-calculation-card">
-              <div class="calc-header">
-                <i data-lucide="clock" size="24"></i>
-                <h4>Cálculo do Tempo</h4>
-              </div>
-              <div class="calc-explanation">
-                <p><strong>Como calculamos o tempo:</strong> Usamos a fórmula de juros compostos considerando:</p>
-                <ul>
-                  <li>Seu patrimônio atual como valor inicial</li>
-                  <li>Seus investimentos mensais como aportes regulares</li>
-                  <li>O retorno anual esperado aplicado mensalmente</li>
-                  <li>Simulamos mês a mês até atingir cada meta</li>
-                </ul>
-                <p><strong>Fórmula simplificada:</strong> Valor Futuro = (Patrimônio Atual + Aportes Mensais) × (1 + Taxa Mensal)^Tempo</p>
+            <div class="dropdown-content" id="calculations-content">
+              <div class="calculations-grid">
+                <div class="calculation-card">
+                  <div class="calc-header">
+                    <i data-lucide="shield" size="24"></i>
+                    <h4>Nível 1 - Segurança</h4>
+                  </div>
+                  <div class="calc-formula">
+                    <div class="formula-title">Fórmula:</div>
+                    <div class="formula-text">Gastos Mensais × 6</div>
+                  </div>
+                  <div class="calc-explanation">
+                    <p>
+                      <strong>Objetivo:</strong> Criar uma reserva de emergência
+                      que cubra 6 meses dos seus gastos.
+                    </p>
+                    <p>
+                      <strong>Por quê?</strong> Esta reserva te protege contra
+                      imprevistos como desemprego, problemas de saúde ou gastos
+                      emergenciais.
+                    </p>
+                    <p>
+                      <strong>Onde investir:</strong> Conta poupança, CDB
+                      líquido ou Tesouro Selic para liquidez imediata.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="calculation-card">
+                  <div class="calc-header">
+                    <i data-lucide="trophy" size="24"></i>
+                    <h4>Nível 2 - Independência</h4>
+                  </div>
+                  <div class="calc-formula">
+                    <div class="formula-title">Fórmula:</div>
+                    <div class="formula-text">Gastos Anuais × 25</div>
+                  </div>
+                  <div class="calc-explanation">
+                    <p>
+                      <strong>Objetivo:</strong> Acumular 25 vezes seus gastos
+                      anuais seguindo a "Regra dos 4%".
+                    </p>
+                    <p>
+                      <strong>Por quê?</strong> Com este valor, você pode sacar
+                      4% ao ano (que equivale aos seus gastos) e manter o
+                      patrimônio crescendo.
+                    </p>
+                    <p>
+                      <strong>Resultado:</strong> Independência financeira -
+                      você nunca mais precisa trabalhar por dinheiro.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="calculation-card">
+                  <div class="calc-header">
+                    <i data-lucide="crown" size="24"></i>
+                    <h4>Nível 3 - Liberdade Total</h4>
+                  </div>
+                  <div class="calc-formula">
+                    <div class="formula-title">Fórmula:</div>
+                    <div class="formula-text">Gastos Anuais × 40</div>
+                  </div>
+                  <div class="calc-explanation">
+                    <p>
+                      <strong>Objetivo:</strong> Acumular 40 vezes seus gastos
+                      anuais para máxima segurança e flexibilidade.
+                    </p>
+                    <p>
+                      <strong>Por quê?</strong> Permite aumentar
+                      significativamente seu padrão de vida ou ter margem extra
+                      para imprevistos e sonhos.
+                    </p>
+                    <p>
+                      <strong>Resultado:</strong> Liberdade total - você pode
+                      viver a vida dos seus sonhos sem preocupações financeiras.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="calculation-card">
+                  <div class="calc-header">
+                    <i data-lucide="clock" size="24"></i>
+                    <h4>Cálculo do Tempo</h4>
+                  </div>
+                  <div class="calc-explanation">
+                    <p>
+                      <strong>Como calculamos o tempo:</strong> Usamos a fórmula
+                      de juros compostos considerando:
+                    </p>
+                    <ul>
+                      <li>Seu patrimônio atual como valor inicial</li>
+                      <li>Seus investimentos mensais como aportes regulares</li>
+                      <li>O retorno anual esperado aplicado mensalmente</li>
+                      <li>Simulamos mês a mês até atingir cada meta</li>
+                    </ul>
+                    <p>
+                      <strong>Fórmula simplificada:</strong> Valor Futuro =
+                      (Patrimônio Atual + Aportes Mensais) × (1 + Taxa
+                      Mensal)^Tempo
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -335,72 +370,131 @@
           </div>
 
           <!-- Nova seção: Explicação do Resumo -->
-          <div class="summary-explanation-section">
-            <h3 class="explanation-title">
-              <i data-lucide="help-circle" size="28"></i>
-              Entenda Cada Métrica do Resumo
-            </h3>
-            <div class="explanation-grid">
-              <div class="explanation-card">
-                <div class="explanation-header">
-                  <i data-lucide="trending-up" size="24"></i>
-                  <h4>Sobra Mensal Disponível</h4>
-                </div>
-                <div class="explanation-content">
-                  <p><strong>O que é:</strong> A diferença entre sua renda mensal e seus gastos totais.</p>
-                  <p><strong>Cálculo:</strong> Renda Mensal - Gastos Mensais</p>
-                  <p><strong>Importância:</strong> É deste valor que sai seu investimento mensal. Quanto maior a sobra, mais rápido você atinge a liberdade.</p>
-                  <div class="tip-box">
-                    <i data-lucide="lightbulb" size="16"></i>
-                    <span>Dica: Se a sobra for pequena, foque em aumentar renda ou reduzir gastos.</span>
+          <div class="summary-explanation-dropdown">
+            <div class="dropdown-header" onclick="toggleExplanation()">
+              <h3 class="dropdown-title">
+                <i data-lucide="help-circle" size="28"></i>
+                Entenda Cada Métrica do Resumo
+              </h3>
+              <i
+                data-lucide="chevron-down"
+                size="24"
+                class="dropdown-arrow"
+                id="dropdown-arrow"
+              ></i>
+            </div>
+
+            <div class="dropdown-content" id="explanation-content">
+              <div class="explanation-grid">
+                <div class="explanation-card">
+                  <div class="explanation-header">
+                    <i data-lucide="trending-up" size="24"></i>
+                    <h4>Sobra Mensal Disponível</h4>
+                  </div>
+                  <div class="explanation-content">
+                    <p>
+                      <strong>O que é:</strong> A diferença entre sua renda
+                      mensal e seus gastos totais.
+                    </p>
+                    <p>
+                      <strong>Cálculo:</strong> Renda Mensal - Gastos Mensais
+                    </p>
+                    <p>
+                      <strong>Importância:</strong> É deste valor que sai seu
+                      investimento mensal. Quanto maior a sobra, mais rápido
+                      você atinge a liberdade.
+                    </p>
+                    <div class="tip-box">
+                      <i data-lucide="lightbulb" size="16"></i>
+                      <span
+                        >Dica: Se a sobra for pequena, foque em aumentar renda
+                        ou reduzir gastos.</span
+                      >
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="explanation-card">
-                <div class="explanation-header">
-                  <i data-lucide="credit-card" size="24"></i>
-                  <h4>Gastos Anuais Totais</h4>
-                </div>
-                <div class="explanation-content">
-                  <p><strong>O que é:</strong> Seus gastos mensais multiplicados por 12 meses.</p>
-                  <p><strong>Cálculo:</strong> Gastos Mensais × 12</p>
-                  <p><strong>Importância:</strong> Este valor é a base para calcular quanto você precisa para independência financeira.</p>
-                  <div class="tip-box">
-                    <i data-lucide="lightbulb" size="16"></i>
-                    <span>Dica: Inclua TODOS os gastos: moradia, alimentação, lazer, seguros, etc.</span>
+                <div class="explanation-card">
+                  <div class="explanation-header">
+                    <i data-lucide="credit-card" size="24"></i>
+                    <h4>Gastos Anuais Totais</h4>
+                  </div>
+                  <div class="explanation-content">
+                    <p>
+                      <strong>O que é:</strong> Seus gastos mensais
+                      multiplicados por 12 meses.
+                    </p>
+                    <p><strong>Cálculo:</strong> Gastos Mensais × 12</p>
+                    <p>
+                      <strong>Importância:</strong> Este valor é a base para
+                      calcular quanto você precisa para independência
+                      financeira.
+                    </p>
+                    <div class="tip-box">
+                      <i data-lucide="lightbulb" size="16"></i>
+                      <span
+                        >Dica: Inclua TODOS os gastos: moradia, alimentação,
+                        lazer, seguros, etc.</span
+                      >
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="explanation-card">
-                <div class="explanation-header">
-                  <i data-lucide="dollar-sign" size="24"></i>
-                  <h4>Renda Mensal da Liberdade</h4>
-                </div>
-                <div class="explanation-content">
-                  <p><strong>O que é:</strong> A renda mensal que seus investimentos irão gerar quando você atingir a independência.</p>
-                  <p><strong>Cálculo:</strong> Igual aos seus gastos mensais atuais</p>
-                  <p><strong>Importância:</strong> Mostra que você poderá manter seu padrão de vida atual apenas com rendimentos de investimentos.</p>
-                  <div class="tip-box">
-                    <i data-lucide="lightbulb" size="16"></i>
-                    <span>Dica: Na independência, esta renda é passiva - você não precisa trabalhar para recebê-la.</span>
+                <div class="explanation-card">
+                  <div class="explanation-header">
+                    <i data-lucide="dollar-sign" size="24"></i>
+                    <h4>Renda Mensal da Liberdade</h4>
+                  </div>
+                  <div class="explanation-content">
+                    <p>
+                      <strong>O que é:</strong> A renda mensal que seus
+                      investimentos irão gerar quando você atingir a
+                      independência.
+                    </p>
+                    <p>
+                      <strong>Cálculo:</strong> Igual aos seus gastos mensais
+                      atuais
+                    </p>
+                    <p>
+                      <strong>Importância:</strong> Mostra que você poderá
+                      manter seu padrão de vida atual apenas com rendimentos de
+                      investimentos.
+                    </p>
+                    <div class="tip-box">
+                      <i data-lucide="lightbulb" size="16"></i>
+                      <span
+                        >Dica: Na independência, esta renda é passiva - você não
+                        precisa trabalhar para recebê-la.</span
+                      >
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="explanation-card">
-                <div class="explanation-header">
-                  <i data-lucide="calendar" size="24"></i>
-                  <h4>Tempo para Independência</h4>
-                </div>
-                <div class="explanation-content">
-                  <p><strong>O que é:</strong> Quanto tempo você levará para atingir o Nível 2 (25x gastos anuais).</p>
-                  <p><strong>Cálculo:</strong> Baseado em juros compostos com seus aportes mensais e retorno esperado.</p>
-                  <p><strong>Importância:</strong> Te dá uma data estimada para sua independência financeira.</p>
-                  <div class="tip-box">
-                    <i data-lucide="lightbulb" size="16"></i>
-                    <span>Dica: Aumentar o investimento mensal reduz drasticamente este tempo.</span>
+                <div class="explanation-card">
+                  <div class="explanation-header">
+                    <i data-lucide="calendar" size="24"></i>
+                    <h4>Tempo para Independência</h4>
+                  </div>
+                  <div class="explanation-content">
+                    <p>
+                      <strong>O que é:</strong> Quanto tempo você levará para
+                      atingir o Nível 2 (25x gastos anuais).
+                    </p>
+                    <p>
+                      <strong>Cálculo:</strong> Baseado em juros compostos com
+                      seus aportes mensais e retorno esperado.
+                    </p>
+                    <p>
+                      <strong>Importância:</strong> Te dá uma data estimada para
+                      sua independência financeira.
+                    </p>
+                    <div class="tip-box">
+                      <i data-lucide="lightbulb" size="16"></i>
+                      <span
+                        >Dica: Aumentar o investimento mensal reduz
+                        drasticamente este tempo.</span
+                      >
+                    </div>
                   </div>
                 </div>
               </div>

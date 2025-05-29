@@ -1184,6 +1184,318 @@ body {
 }
 /* Adicione estes estilos ao seu arquivo styles.css existente */
 
+.calculations-dropdown {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.calculations-dropdown .dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.calculations-dropdown .dropdown-header:hover {
+  background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+}
+
+.calculations-dropdown .dropdown-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.calculations-dropdown .dropdown-arrow {
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.calculations-dropdown .dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.calculations-dropdown .dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #f8f9fa;
+}
+
+.calculations-dropdown .dropdown-content.open {
+  max-height: 2500px; /* Adjust based on your content height */
+  padding: 20px;
+}
+
+.calculations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.calculation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 4px solid transparent;
+}
+
+.calculation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.calculation-card:nth-child(1) {
+  border-left-color: #3182ce;
+}
+
+.calculation-card:nth-child(2) {
+  border-left-color: #d69e2e;
+}
+
+.calculation-card:nth-child(3) {
+  border-left-color: #805ad5;
+}
+
+.calculation-card:nth-child(4) {
+  border-left-color: #cf0e6e;
+}
+
+.calc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.calc-header i {
+  color: #48bb78;
+}
+
+.calc-header h4 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.calc-formula {
+  background: #edf2f7;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.formula-title {
+  font-size: 0.9rem;
+  color: #4a5568;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.formula-text {
+  font-size: 1.1rem;
+  color: #2d3748;
+  font-weight: 700;
+  font-family: "Courier New", monospace;
+  background: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e0;
+}
+
+.calc-explanation p {
+  margin: 12px 0;
+  color: #4a5568;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.calc-explanation strong {
+  color: #2d3748;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .calculations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calculations-dropdown .dropdown-title {
+    font-size: 1rem;
+  }
+
+  .calculations-dropdown .dropdown-content.open {
+    padding: 15px;
+  }
+
+  .calculation-card {
+    padding: 16px;
+  }
+
+  .time-calculation-card {
+    padding: 20px;
+  }
+}
+
+.summary-explanation-dropdown {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dropdown-header:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6b4190 100%);
+}
+
+.dropdown-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #f8f9fa;
+}
+
+.dropdown-content.open {
+  max-height: 2000px; /* Adjust based on your content height */
+  padding: 20px;
+}
+
+.explanation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.explanation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.explanation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.explanation-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.explanation-header i {
+  color: #667eea;
+}
+
+.explanation-header h4 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.explanation-content p {
+  margin: 8px 0;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.explanation-content strong {
+  color: #2d3748;
+}
+
+.tip-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.tip-box i {
+  color: #0ea5e9;
+  flex-shrink: 0;
+}
+
+.tip-box span {
+  color: #0c4a6e;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .explanation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dropdown-title {
+    font-size: 1rem;
+  }
+
+  .dropdown-content.open {
+    padding: 15px;
+  }
+
+  .explanation-card {
+    padding: 16px;
+  }
+}
+
 /* Seção de Cálculos */
 .calculations-section {
   margin: 3rem 0;
@@ -1263,7 +1575,7 @@ body {
   font-size: 1.1rem;
   font-weight: 700;
   color: #1e293b;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 .calc-explanation p {

@@ -166,6 +166,96 @@ function validateInputs() {
   return isValid;
 }
 
+function toggleExplanation() {
+  const content = document.getElementById("explanation-content");
+  const arrow = document.getElementById("dropdown-arrow");
+
+  content.classList.toggle("open");
+  arrow.classList.toggle("rotated");
+}
+
+// Optional: Close dropdown when clicking outside
+document.addEventListener("click", function (event) {
+  const dropdown = document.querySelector(".summary-explanation-dropdown");
+  const content = document.getElementById("explanation-content");
+  const arrow = document.getElementById("dropdown-arrow");
+
+  if (!dropdown.contains(event.target)) {
+    content.classList.remove("open");
+    arrow.classList.remove("rotated");
+  }
+});
+
+// Optional: Keyboard accessibility
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    const content = document.getElementById("explanation-content");
+    const arrow = document.getElementById("dropdown-arrow");
+    content.classList.remove("open");
+    arrow.classList.remove("rotated");
+  }
+});
+
+function toggleCalculations() {
+  const content = document.getElementById("calculations-content");
+  const arrow = document.getElementById("calculations-arrow");
+
+  content.classList.toggle("open");
+  arrow.classList.toggle("rotated");
+}
+
+// Enhanced functionality if you want both dropdowns to work independently
+// You can also combine this with the previous dropdown script
+
+// Optional: Close all dropdowns when clicking outside
+document.addEventListener("click", function (event) {
+  const calculationsDropdown = document.querySelector(".calculations-dropdown");
+  const explanationDropdown = document.querySelector(
+    ".summary-explanation-dropdown"
+  );
+
+  // Close calculations dropdown if clicked outside
+  if (calculationsDropdown && !calculationsDropdown.contains(event.target)) {
+    const calculationsContent = document.getElementById("calculations-content");
+    const calculationsArrow = document.getElementById("calculations-arrow");
+    if (calculationsContent && calculationsArrow) {
+      calculationsContent.classList.remove("open");
+      calculationsArrow.classList.remove("rotated");
+    }
+  }
+
+  // Close explanation dropdown if clicked outside
+  if (explanationDropdown && !explanationDropdown.contains(event.target)) {
+    const explanationContent = document.getElementById("explanation-content");
+    const explanationArrow = document.getElementById("dropdown-arrow");
+    if (explanationContent && explanationArrow) {
+      explanationContent.classList.remove("open");
+      explanationArrow.classList.remove("rotated");
+    }
+  }
+});
+
+// Optional: Keyboard accessibility for both dropdowns
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    // Close calculations dropdown
+    const calculationsContent = document.getElementById("calculations-content");
+    const calculationsArrow = document.getElementById("calculations-arrow");
+    if (calculationsContent && calculationsArrow) {
+      calculationsContent.classList.remove("open");
+      calculationsArrow.classList.remove("rotated");
+    }
+
+    // Close explanation dropdown
+    const explanationContent = document.getElementById("explanation-content");
+    const explanationArrow = document.getElementById("dropdown-arrow");
+    if (explanationContent && explanationArrow) {
+      explanationContent.classList.remove("open");
+      explanationArrow.classList.remove("rotated");
+    }
+  }
+});
+
 /**
  * Calculate the number of months needed to reach a financial target
  * @param {number} target - Target amount to reach
@@ -392,7 +482,7 @@ async function calculateFreedom() {
     document.getElementById("annual-expenses").textContent =
       formatCurrency(annualExpenses);
     document.getElementById("freedom-income").textContent =
-      formatCurrency(monthlyExpenses); 
+      formatCurrency(monthlyExpenses);
     document.getElementById("total-timeline").textContent =
       formatTime(monthsToLevel2);
   }, 1200);

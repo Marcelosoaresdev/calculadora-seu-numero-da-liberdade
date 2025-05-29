@@ -1182,3 +1182,259 @@ body {
     font-size: 0.8em;
   }
 }
+/* Adicione estes estilos ao seu arquivo styles.css existente */
+
+/* Seção de Cálculos */
+.calculations-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.calculations-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.calculations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.calculation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calculation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.2);
+}
+
+.calc-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.calc-header i {
+  color: #3b82f6;
+}
+
+.calc-header h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.calc-formula {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #3b82f6;
+}
+
+.formula-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.formula-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  font-family: 'Courier New', monospace;
+}
+
+.calc-explanation p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.calc-explanation ul {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.calc-explanation li {
+  margin-bottom: 0.5rem;
+  color: #475569;
+}
+
+.time-calculation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  grid-column: 1 / -1;
+}
+
+/* Seção de Explicação do Resumo */
+.summary-explanation-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fefefe 0%, #f8fafc 100%);
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.explanation-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.explanation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.explanation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.explanation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.2);
+}
+
+.explanation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.explanation-header i {
+  color: #10b981;
+}
+
+.explanation-header h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.explanation-content p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.tip-box {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 1px solid #10b981;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.tip-box i {
+  color: #10b981;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.tip-box span {
+  font-size: 0.875rem;
+  color: #065f46;
+  font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .calculations-section,
+  .summary-explanation-section {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .calculations-grid,
+  .explanation-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .calculation-card,
+  .explanation-card {
+    padding: 1.25rem;
+  }
+
+  .calculations-title,
+  .explanation-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .calc-header h4,
+  .explanation-header h4 {
+    font-size: 1rem;
+  }
+
+  .formula-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculations-section,
+  .summary-explanation-section {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .calculation-card,
+  .explanation-card {
+    padding: 1rem;
+  }
+
+  .calc-formula {
+    padding: 0.75rem;
+  }
+
+  .tip-box {
+    padding: 0.625rem;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+}

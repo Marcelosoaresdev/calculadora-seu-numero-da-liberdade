@@ -391,9 +391,8 @@ async function calculateFreedom() {
       formatCurrency(monthlySurplus);
     document.getElementById("annual-expenses").textContent =
       formatCurrency(annualExpenses);
-    document.getElementById("freedom-income").textContent = formatCurrency(
-      (level2Target * 0.04) / 12
-    );
+    document.getElementById("freedom-income").textContent =
+      formatCurrency(monthlyExpenses); 
     document.getElementById("total-timeline").textContent =
       formatTime(monthsToLevel2);
   }, 1200);

@@ -1,5 +1,20 @@
-lucide.createIcons();
+/*
+  Financial Freedom Calculator JavaScript
+  Created: 2025-05-29
+  Author: Marcelosoaresdev
+*/
 
+// Initialize Lucide icons when DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  lucide.createIcons();
+  initializeEventListeners();
+});
+
+/**
+ * Format currency value to Brazilian Real format
+ * @param {number} value - The numeric value to format
+ * @returns {string} Formatted currency string
+ */
 function formatCurrency(value) {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -9,6 +24,10 @@ function formatCurrency(value) {
   }).format(value);
 }
 
+/**
+ * Validate all input fields according to business rules
+ * @returns {boolean} True if all inputs are valid
+ */
 function validateInputs() {
   let isValid = true;
   const inputs = [
@@ -37,14 +56,14 @@ function validateInputs() {
       id: "monthly-investment",
       errorId: "investment-error",
       name: "Investimento mensal",
-      min: 0,
+      min: 1,
       allowZero: false,
     },
     {
       id: "annual-return",
       errorId: "return-error",
       name: "Retorno anual",
-      min: 0,
+      min: 0.1,
       allowZero: false,
     },
   ];
@@ -113,7 +132,7 @@ function validateInputs() {
     }
   });
 
-  // Additional validations
+  // Additional business logic validations
   const income =
     parseFloat(document.getElementById("monthly-income").value) || 0;
   const expenses =
@@ -122,6 +141,7 @@ function validateInputs() {
     parseFloat(document.getElementById("monthly-investment").value) || 0;
   const surplus = income - expenses;
 
+  // Check if expenses are not greater than or equal to income
   if (income > 0 && expenses >= income) {
     document.getElementById("expenses-error").innerHTML =
       '<i data-lucide="alert-circle" size="16"></i> Gastos não podem ser maiores ou iguais à renda';
@@ -129,6 +149,7 @@ function validateInputs() {
     isValid = false;
   }
 
+  // Check if investment is not greater than surplus
   if (investment > surplus && surplus > 0) {
     document.getElementById(
       "investment-error"
@@ -145,6 +166,14 @@ function validateInputs() {
   return isValid;
 }
 
+/**
+ * Calculate the number of months needed to reach a financial target
+ * @param {number} target - Target amount to reach
+ * @param {number} currentSavings - Current savings amount
+ * @param {number} monthlyInvestment - Monthly investment amount
+ * @param {number} monthlyReturn - Monthly return rate (as decimal)
+ * @returns {number} Number of months to reach target
+ */
 function calculateMonthsToReach(
   target,
   currentSavings,
@@ -152,12 +181,12 @@ function calculateMonthsToReach(
   monthlyReturn
 ) {
   if (monthlyInvestment <= 0) return Infinity;
-
   if (currentSavings >= target) return 0;
 
   let months = 0;
   let accumulated = currentSavings;
 
+  // Calculate compound growth with monthly investments
   while (accumulated < target && months < 1200) {
     // max 100 years
     accumulated = accumulated * (1 + monthlyReturn) + monthlyInvestment;
@@ -167,17 +196,54 @@ function calculateMonthsToReach(
   return months;
 }
 
+/**
+ * Calculate progress percentage towards a target
+ * @param {number} current - Current amount
+ * @param {number} target - Target amount
+ * @returns {number} Progress percentage (0-100)
+ */
 function calculateProgress(current, target) {
   if (target === 0) return 0;
   return Math.min((current / target) * 100, 100);
 }
 
+/**
+ * Format time duration in months/years
+ * @param {number} months - Number of months
+ * @returns {string} Formatted time string
+ */
 function formatTime(months) {
   if (months === Infinity || months > 1200) return "∞";
   if (months <= 24) return `${Math.ceil(months)} meses`;
   return `${Math.ceil(months / 12)} anos`;
 }
 
+/**
+ * Animate a progress bar to a target width
+ * @param {HTMLElement} progressElement - Progress bar element
+ * @param {number} targetWidth - Target width percentage
+ * @param {number} delay - Animation delay in milliseconds
+ */
+function animateProgressBar(progressElement, targetWidth, delay = 0) {
+  setTimeout(() => {
+    // Reset the progress bar
+    progressElement.style.width = "0%";
+    progressElement.classList.remove("animate");
+
+    // Force reflow to ensure the reset is applied
+    progressElement.offsetHeight;
+
+    // Animate to target width
+    setTimeout(() => {
+      progressElement.style.width = targetWidth + "%";
+      progressElement.classList.add("animate");
+    }, 50);
+  }, delay);
+}
+
+/**
+ * Main calculation function for financial freedom
+ */
 async function calculateFreedom() {
   // Validate inputs first
   if (!validateInputs()) {
@@ -218,9 +284,9 @@ async function calculateFreedom() {
   const annualExpenses = monthlyExpenses * 12;
   const monthlyReturn = annualReturn / 100 / 12;
 
-  // Calculate the 3 levels
+  // Calculate the 3 financial freedom levels
   const level1Target = monthlyExpenses * 6; // 6 months emergency fund
-  const level2Target = annualExpenses * 25; // Financial independence
+  const level2Target = annualExpenses * 25; // Financial independence (4% rule)
   const level3Target = annualExpenses * 40; // Total freedom
 
   // Calculate time to reach each level
@@ -243,7 +309,7 @@ async function calculateFreedom() {
     monthlyReturn
   );
 
-  // Calculate progress
+  // Calculate progress percentages
   const level1Progress = calculateProgress(currentSavings, level1Target);
   const level2Progress = calculateProgress(currentSavings, level2Target);
   const level3Progress = calculateProgress(currentSavings, level3Target);
@@ -256,57 +322,71 @@ async function calculateFreedom() {
   const resultsContainer = document.getElementById("results-container");
   resultsContainer.classList.add("show");
 
-  // Animate level cards
+  // Animate level cards appearance
   setTimeout(() => {
     document.querySelectorAll(".level-card").forEach((card) => {
       card.classList.add("animate");
     });
   }, 300);
 
-  // Animate summary card
+  // Animate summary card appearance
   setTimeout(() => {
     document.querySelector(".summary-card").classList.add("animate");
   }, 1000);
 
-  // Update values with delay for better animation
+  // Update Level 1 values and animations
   setTimeout(() => {
-    // Update Level 1
     document.getElementById("level1-value").textContent =
       formatCurrency(level1Target);
-    document.getElementById("level1-progress").style.width =
-      level1Progress + "%";
     document.getElementById("level1-percentage").textContent =
       level1Progress.toFixed(1) + "%";
     document.getElementById("level1-time").querySelector("span").textContent =
       formatTime(monthsToLevel1);
+
+    // Animate progress bar for level 1
+    animateProgressBar(
+      document.getElementById("level1-progress"),
+      level1Progress,
+      200
+    );
   }, 500);
 
+  // Update Level 2 values and animations
   setTimeout(() => {
-    // Update Level 2
     document.getElementById("level2-value").textContent =
       formatCurrency(level2Target);
-    document.getElementById("level2-progress").style.width =
-      level2Progress + "%";
     document.getElementById("level2-percentage").textContent =
       level2Progress.toFixed(1) + "%";
     document.getElementById("level2-time").querySelector("span").textContent =
       formatTime(monthsToLevel2);
+
+    // Animate progress bar for level 2
+    animateProgressBar(
+      document.getElementById("level2-progress"),
+      level2Progress,
+      200
+    );
   }, 700);
 
+  // Update Level 3 values and animations
   setTimeout(() => {
-    // Update Level 3
     document.getElementById("level3-value").textContent =
       formatCurrency(level3Target);
-    document.getElementById("level3-progress").style.width =
-      level3Progress + "%";
     document.getElementById("level3-percentage").textContent =
       level3Progress.toFixed(1) + "%";
     document.getElementById("level3-time").querySelector("span").textContent =
       formatTime(monthsToLevel3);
+
+    // Animate progress bar for level 3
+    animateProgressBar(
+      document.getElementById("level3-progress"),
+      level3Progress,
+      200
+    );
   }, 900);
 
+  // Update summary section
   setTimeout(() => {
-    // Update summary
     document.getElementById("monthly-surplus").textContent =
       formatCurrency(monthlySurplus);
     document.getElementById("annual-expenses").textContent =
@@ -318,7 +398,7 @@ async function calculateFreedom() {
       formatTime(monthsToLevel2);
   }, 1200);
 
-  // Scroll to results
+  // Smooth scroll to results
   setTimeout(() => {
     resultsContainer.scrollIntoView({
       behavior: "smooth",
@@ -327,12 +407,15 @@ async function calculateFreedom() {
   }, 1500);
 }
 
-// Add input event listeners to clear errors on typing
-document.addEventListener("DOMContentLoaded", function () {
+/**
+ * Initialize all event listeners for the application
+ */
+function initializeEventListeners() {
   const inputs = document.querySelectorAll('input[type="number"]');
+
   inputs.forEach((input) => {
+    // Clear errors when user starts typing valid values
     input.addEventListener("input", function () {
-      // Clear error state when user starts typing valid values
       const value = parseFloat(this.value);
       const allowZero = input.id === "current-savings"; // Only patrimônio atual allows zero
 
@@ -346,27 +429,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Enhanced validation for specific inputs
+    // Prevent negative values and problematic characters
     input.addEventListener("keydown", function (e) {
-      // Prevent negative values and some problematic keys
       if (e.key === "-" || e.key === "e" || e.key === "E") {
         e.preventDefault();
       }
     });
 
+    // Auto-correct minimum values on blur
     input.addEventListener("blur", function () {
-      // Ensure minimum values based on field requirements
       const value = parseFloat(this.value);
       let minValue;
 
+      // Set minimum values based on field type
       switch (input.id) {
         case "monthly-income":
         case "monthly-expenses":
         case "monthly-investment":
-          minValue = 0;
+          minValue = 1;
           break;
         case "annual-return":
-          minValue = 0;
+          minValue = 0.1;
           break;
         case "current-savings":
           minValue = 0; // This can be zero
@@ -375,12 +458,13 @@ document.addEventListener("DOMContentLoaded", function () {
           minValue = 0;
       }
 
+      // Auto-correct if below minimum
       if (!isNaN(value) && value < minValue && this.value !== "") {
         this.value = minValue;
       }
     });
   });
 
-  // Initialize Lucide icons
+  // Re-initialize Lucide icons
   lucide.createIcons();
-});
+}

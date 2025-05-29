@@ -6,14 +6,13 @@
     <title>Calculadora da Liberdade Financeira</title>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div class="container">
       <div class="header">
         <div class="header-content">
           <h1>
-            <i data-lucide="target" class="header-icon" size="48"></i>
             SEU NÚMERO DA LIBERDADE
           </h1>
           <p>Calculando Exatamente Quanto Você Precisa Para Ser Livre</p>
@@ -93,7 +92,7 @@
                   type="number"
                   id="monthly-investment"
                   placeholder="1000"
-                  min="0"
+                  min="1"
                   step="1"
                 />
               </div>
@@ -110,9 +109,9 @@
                   type="number"
                   id="annual-return"
                   placeholder="10"
-                  min="0"
+                  min="0.1"
                   max="100"
-                  step="1"
+                  step="0.1"
                 />
                 <span class="percent-symbol">%</span>
               </div>
@@ -163,7 +162,6 @@
                       <div
                         class="progress-fill"
                         id="level1-progress"
-                        style="width: 0%"
                       ></div>
                     </div>
                   </div>
@@ -195,7 +193,6 @@
                       <div
                         class="progress-fill"
                         id="level2-progress"
-                        style="width: 0%"
                       ></div>
                     </div>
                   </div>
@@ -227,7 +224,6 @@
                       <div
                         class="progress-fill"
                         id="level3-progress"
-                        style="width: 0%"
                       ></div>
                     </div>
                   </div>
@@ -304,6 +300,7 @@
         </div>
       </div>
     </div>
-  </body>
+
     <script src="script.js"></script>
+  </body>
 </html>
